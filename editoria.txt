@@ -1,0 +1,52 @@
+# Config-files
+configuration instruction
+
+$git clone https://gitlab.coko.foundation/editoria/editoria.git
+$nvm install 8.9.3
+$nvm use 8.9.3
+$yarn
+$npm install -g yarn
+$yarn
+$cd packages/editoria-app
+$vim config/local-development.json
+              {
+                             "pubsweet-server": {
+                                           "secret": "dev_secret"
+                             },
+                             "pubsweet-component-ink-backend": {
+                                           "inkEndpoint": "http://inkdemo-api.coko.foundation/",
+                                           "email": "editoria@coko.foundation",
+                                           "password": "editoria",
+                                           "recipes": {
+                                                          "editoria-typescript": "1"
+                                           }
+                             }
+              }
+
+$vim source config/development_ext.env
+              export PUBSWEET_SECRET='dev_secret'
+              export POSTGRES_USER='root'
+              export POSTGRES_PASSWORD='secretpassword'
+              export POSTGRES_HOST='localhost'
+              export POSTGRES_DB='editoria_dev'
+              export POSTGRES_PORT='5432'
+              export SERVER_PORT='3000'
+              export INK_ENDPOINT='http://inkdemo-api.coko.foundation/'
+              export INK_USERNAME='admin@admin.com'
+              export INK_PASSWORD='abc12345'
+              export MAILER_USER='xpub@sandbox9af3d5dc64334deca9759efe7056d6b3.mailgun.org'
+              export MAILER_PASSWORD='xpubpass'
+              export MAILER_SENDER='dev@example.com'
+              export MAILER_HOSTNAME='smtp.mailgun.org'
+              export PASSWORD_RESET_URL='http://localhost:3000/password-reset'
+              export PASSWORD_RESET_SENDER='dev@example.com'
+              export NODE_ENV='development'
+
+$source config/development_ext.env
+$yarn start:services
+
+IN ANOTHER TERMINAL
+$source config/development_ext.env
+$yarn resetdb
+$yarn server
+
